@@ -1,0 +1,104 @@
+Category,Question,Answer
+Tables,What’s a dual table?,It’s a default special one-row table in Oracle database installations
+Tables,Can we do calculations with a dual table?,Can use to do calculations or to perform sequence generator
+Tables,Can you generate sequence with a dual table?,Can use to do calculations or to perform sequence generator
+Tables,Can we look at the user or date with a dual table?,Yes
+Tables,Can we insert more rows into a DUAL table?,Yes
+Tables,Can we create a table based on a existing table? (OR) What’s the easiest way to backup a table?,"Yes, CTAS() create table as  ⇒ Back up tables"
+Tables,Can we drop all the columns from a table?,"We can’t drop all the columns from a table, we’ll get the ORA-12983 error."
+Tables,What are pseudo columns?,"Pseudo columns behave like a table column, but is not actually stored in the table. You can select from a pseudo table but you cannot insert, update, or delete their values. SYSDATE (get current date), ROWID, ROWNUM, OBJECT_ID, OBJECT_VALUE, ORA_ROWSCN, XMLDATA, CURRVAL, NEXTVAL, LEVEL, CONNECT BY ISCYCLE"
+Tables,"What’s the difference between count(1), count(*)?","count(1) and count(*) are the same. Same amount of work, do the same thing and take the same amount of resources."
+Filters,What is the difference between IN and = operator?,"An = operator accepts only 1 value, IN operator can accept more than 1 value. Max values it can take is 100"
+Filters,How many maximum number of values can a IN operator take?,IN operator can accept more than 1 value. Max values it can take is 100
+Filters,Difference between EXIST and IN when using sub queries?,"For IN the inner query is executed first and only once. For exists the first row of the outer query is executed first, then the inner query and the outer query ouput uses this result for checking. It repeqts qs mqny times qs there qre outer auery rows"
+Filters,Difference between HAVING and WHERE clause?,WHERE is used to filter out the data before the aggregation takes place and HAVING is used to filter out the data after the aggregation takes place.
+Delete and Truncate,What’s the difference between Delete and Truncate? Which is faster?,"DELETE commands is used to selectively remove rows from a table using a WHERE clause. If no WHERE condition is specified, all rows will be removed. After DELETE you need to COMMIT or ROLLBACK to make changes permanent or undo. Truncate removes all rows from table. No rollback.Since no undo log and no dependencies TRUNCATE is faster"
+Delete and Truncate,Can we use WHERE condition with truncate?,No because TRUNCATE removes all rows from a table.
+Delete and Truncate,Can we delete a record from more than one table simultaneously?,"To delete record from more than one table, join them and use delete"
+Delete and Truncate,How do delete duplicates records? Be able to write it!,"To delete duplicate records, use row_id. Select the minimum row id between the multiple rows and apply on the outer query a delete like d1.rowid > (inner query with min row id and all columns matching)"
+Joins,Explain Inner Join,Return all rows from multiple tables where the join condition is met
+Joins,Explain Left Outer Join,This type of join returns all rows from the LEFT hand table specified in the ON condition and only those rows from the other table where the joined fields are equal (join condition is met)
+Joins,Explain Right Outer Join,This type of join returns all rows from the Right hand table specified in the ON condition and only those rows from the other table where the joined fields are equal (join condition is met)
+Joins,FULL Outer Join,Returns all rows from the LEFT hand table and RIGHT hand table with nulls in place where the join condition is not met.
+Joins,What is a self join and can you explain with an example?,"A self join is a join in which a table is joined with itself. Exemples could be to see in an employee table with the ids the manager of employes, or to see people from similar cities comparing rows within a table"
+Joins,What happens when a join condition is missed?,"If a join condition is missed, it performs a CARTESION Join (also called as CROSS join). Each row in the first table is pared with all the rows in the second table. So if first table has 10 rows and second table has 5 rows, totally 10*5 = 50 rows are displayed)"
+Joins,Which is the faster among left outer join and right outer join?,There is no velocity difference between left outer join and right outer join. It should not really mater to the database engine.
+Datatypes,Can you briefly explain the various Datatypes present in Oracle?,"Character Datatypes: CHAR, CHARVAR, VARCHAR2, NCHAR and NVARCHAR2, LONG; Numeric Datatypes: NUMBER, BINARY_FLOAT, BINARY_DOUBLE;Date Datatypes: DATE, TIMESTAMP, TIMESTAMP WITH TIME ZONE, TIMESTAMP WITH LOCAL TIME ZONE; Large objects: CLOB, NCLOB, BFILE; XML Datatypes: XMLType"
+Datatypes,"Difference between CHAR, VARCHAR and VARCHAR2?",Varchar is reserved by Orcale for future releases and is advised not use it. CHAR variables stores the data in fixed length including the trailing space (It will pad your entry with spaces); VARCHAR2 variables stores only the data (Variable length text)
+Datatypes,What is the difference between DATE and TIMESTAMP datatype?,"Date can store month, day, year, century, hours, minutes, and seconds. TIMESTAMP is much more fine-grained as a measurement of time than DATE is (milliseconds vs seconds). It can optionally store the Time Zone. Only max of 5 places deep to calculate with date."
+Datatypes,What is the difference between CHAR and NCHAR datatype?,"NCHAR is used to store fixed length Unicode data. It is often used to store data in different languages. CHAR is used to store fixed length character data. When data is stored using CHAR, it takes n bytes while NCHAR takes 2n bytes. "
+Datatypes,"Explain composite data type, tell me the syntax.","A composite data type could be a record, table, nested table or a varray. This is so because all of them are composed of multiple data types."
+Datatypes,What's a nested table?,"NESTED TABLE is an Oracle data type used to support columns containing multivalued attributes, in this case, columns that can hold an entire sub-table."
+Functions,What are conversions functions?,Conversion functions are useful to typecast data from one datatype to other.
+Functions,What is the usage of LPAD() and RPAD() functions?,"LPAD (left pad) and RPAD are used to add padding characters to the left or right side of a string up to a given length. The default padding character is a space. If the string’s is greater than the required length, it will be trimmed (excess characters will be removed)"
+Functions,Differences between single row function and multi row function?,"Single row functions return a single result row for every row of queried table or view. Multiple row functions return a single result row based on groups, rather than on single row."
+Functions,What are the various date functions you have used?,"Various date functions you have used are MONTHS_BETWEEN (how many month since the contract), LAST_DAY, NEXT_DAY(get the next day of the given date), ADD_MONTHS (add month in the day), EXTRACT (get specific portion of the date)"
+Functions,How do I add one month to SYSDATE?,ADD_MONTHS
+Functions,What is the simplest way to add one hour to SYSDATE? SYSDATE + (1/24),SYSDATE + (1/24)
+Nulls,Explain briefly NVL2 function?,"The NVL2 function accepts three parameters:
+- If the first parameter value is not null it returns the value in the second parameter
+- If the first parameter value is null, it returns the third parameter."
+Nulls,Explain briefly NULLIF function?,"NULLIF:
+- It accepts two parameters and returns null if both parameters are equal.
+- If they are note equal, the first parameter value is returned."
+Nulls,Do you know about COALESCE function?,"The COALESCE function accepts two or more parameters and
+- returns the first non-null value in a list
+- If all parameters contain null values, it returns null"
+Nulls,"Can you modify a NULL column to NOT NULL column, if the table has some data?",Can you change a NULL column to NOT NULL column if table has some data? Yes if the column does not have null values and NO if the column has null values.
+Nulls,"What is the ouput of below SQL statement? 
+Select * from test1 where customer_phone = NULL; Select * from test1 where customer _phone in (null)","We can’t use equal or in operators with nulls. If so, it will returns 0 row’s. We should use IS instead."
+Nulls,What is the ouput of below SQL statement? Select 'tom' || null || 'joe' from dual;,The output of the statement is ‘tomjoe’.
+Nulls,Which datatype does not allow ‘null’ values?,Every datatype allows ‘null’ values. We can however set the column on a table to NOT NULL.
+Constraints,What is a constraint?,"Constraint is a way of enforcing rules in the database, and it maintains the integrity of the database."
+Constraints,What are types of constraints available?,"Below are the integrity constraints Available in Oracle. Not Null (prohibit db value from behing null°, Unique(prohibitis multiple rows from having same value in same column), Primary Key(unique + not null), Foreign Key, Check, REF"
+Constraints,What are the characteristics of Foreign Key,Foreign Key: A foreign key constraint requires values in one table to match values in another table.
+Constraints,Characteristics of Check,Check: A check constraint requires a value in the database to comply with a specified condition.
+Constraints,REF characteristics,A REF column by definition references an object in another object type or in a relational table. A REF constraint lets you further describe the relationship between the REF column and the object it references.
+Constraints,What is integrity Constraint?,Integrity Constraints are used to prevent entry of invalid information tables.
+Constraints,Can a table have 2 primary keys?,A table can’t have two primary keys
+Constraints,Can we create a primary key constraint on one column and foreign key on other column?,
+Constraints,How do you disable a constraint?,"You can disable a constraint by doing: 
+ALTER TABLE test
+DISABLE CONSTRAINT constraint_name;"
+Constraints,"Can you use SYSDATE in check constraints? If no, why?","No!!! SYSDATE, CURRVALE, NEXTVAL, LEVEL, ROWID, UID, USER or USERENV cannot be referenced with Oracle check constraint. This is because, the values are dynamic in nature!!! You could do it using TRIGGER before insert or update"
+Constraints,"If you create a primary key, by default which index is created?","When you create a primary key , by default a unique index is created. Type of indexes? Unique index"
+Constraints,What are cascade constraints?,"Cascade constraints clause is used to drop all referential intergity constraints that refer to primary and unique keys in the dropped table. If you omit this clause, and if the table has referential integrity constraints, then the database returns an error and does not drop the table."
+Constraints,What is ON DELETE CASCADE?,"ON DELETE CASCADE: A foreign key with cascade delete means that if a record in the parent table is deleted, then the corresponding records in the child table will automatically be deleted."
+Constraints,"Which will fire first, Constraint or Trigger?","Constraint are fired first, if AFTER trigger exists. Bit if there qre any BEFORE triggers on the table, they are fired first."
+Constraints,I have two tables and they have foreign keys referencing each other with different columns. How can I insert data into the tables?,"If two tables have foreign keys referencing each other with different columns, you can only insert data if you disable the foreign key to do so. They shouldn’t have designed the tables with circular references. That’s typically a big No No."
+Sequences,What is a sequence and what is the need of it?,A sequence is a database object that auto generates continuous unique numbers. It is used whenever we need to populate a column with unique values. It is used whenever we need to populate a column with unique values. (unique bill id)
+Sequences,Create sequence sequence_name; Will the above sequence be created?,"Yes it will be created. By default all of the min value, start value and increment value will be one."
+Sequences,Can you reset the sequence to start at a different number?,Yes
+Synonyms,Can you create synonym with the same name of object?,You can’t create a synonym with the same name of object if you are creating in the same schema. Yes if you creating in a different schema. ORA-01471: cannot create a synonym with same name as object.
+Synonyms,What is a synonym and what is use of synonym?,"A synonym is an alternative name for objects such as tables, views, sequences, stored procedures, and other database objects. It can also be used to switch you code between two schemas with the same structure by redefining the synonyms."
+Synonyms,What are public synonyms?,Public synonyms are synonyms which are accessible to all users. However each user must have appropriate privileges on the underlying object in order to use the synonym.
+SET Operations,What are the various SET operators available?,UNION - It returns rows of first query + rows of second query minus duplicqte rows. UNION ALL - It returns rows from both the queries including duplicqte rows. MINUS - Rows that are unique for the first query will be retrieved. INTERSECT - Common rows from both the queries will be retrieved.
+SET Operations,What is the difference between JOINS and SET operations?,SET operators are used to combine similar type of data from two or more tables. Join is used to select columns from two or more tables based on logical relationships between the tables.
+SET Operations,What is the difference between UNION and UNION ALL?,"The UNION returns all distinct rows and UNION ALL returns all rows selected from the queries even if duplicate. In UNION the removal of duplicates requires extra processing, hence takes some time. UNION ALL is faster"
+SET Operations,Should the number of the columns be same when performing SET operations?,Yes
+SET Operations,Should the datatypes of the columns be same when performing SET operations?,Yes
+Sub Queries,What is an inline view?,A subquery which appears in the FROM clause is called as Inline View.
+Sub Queries,What is a Scalar Sub Query?,A subquery which appears in the SELECT clause is called as a Scalar sub query. It can return only 1 column and 1 row
+Sub Queries,What is the advantage of WITH clause?,"Using a WITH clause, we can execute the sub query once and can reference it multiple times in the main query. The data is saved in a temporary table, thus improving the performance."
+Sub Queries,Write a correlated Sub Query and Explain how it works?,"A correlated subquery is a subquery that uses values from the outer query, requiring the inner query to execute once for each outer query."
+Views,What is a view and what are the advantages of it?,"View is a virtual table based on the result set of an SQL statement. - We can use views to hide data complexitiy. Instead of forcing users to learn the complicated joins and business rules, you can provide a view that runs a commonly requested SQL statement.We can use views to limit access to only a part of the table."
+Views,What are key preserved tables?,"A table is key preserved if every key of the table can also be a key of the result of the join. So, a key-preserved table has its keys preserved through a join. The concept dictates the restrictions on modifying join views."
+Views,Can we delete a record in view?,"Yes. Rows from a join can be deleted as long as there is exactly on key-preserved table in the join. The key preserved table can be repeated in the FROM clause. If the view is defined with the WITH CHECK OPTION clause and the key preserved table is repeated, then the rows cannot be deleted from the view."
+Views,Can we update a view?,"Yes update view. All updatable columns of a join view must map to columns of a key-preserved table. If the views is defined with the WITH CHECK OPTION clause, then all join columns and all columns of repeated tables are not updatable."
+Views,Can we insert data into a view?,"Yes, an INSERT statement must not explicitly or implicitly refer to the columns of a non-key-preserved table. If the join view is defined with the WITH CHECK OPTION clause, INSERT statements are not permitted."
+Views,"If I have created view from two tables by taking all the columns, Is it possible to update that view?",No
+Views,If have to compulsory updqte that view how to do that?,All the views which are referencing the dropped table will become invalid.
+Views,"If a table is dropped, then what happens to the views?","You can create a view with errors by using the FORCE option, that means even if the SQL statement is not valid, you can force oracle to create it."
+Databases,What is a database?,"A database is an organized collection of data, stored and retrieved digitally from a remote or local computer system. Databases can be vast and complex, and such databases are developed using fixed design and modeling approaches.
+
+"
+Databases,What is DBMS?,"DBMS stands for Database Management System. DBMS is a system software responsible for the creation, retrieval, updation, and management of the database. It ensures that our data is consistent, organized, and is easily accessible by serving as an interface between the database and its end-users or application software."
+Databases,What is RDBMS? How is it different from DBMS?,"RDBMS stands for Relational Database Management System. The key difference here, compared to DBMS, is that RDBMS stores data in the form of a collection of tables, and relations can be defined between the common fields of these tables. Most modern database management systems like MySQL, Microsoft SQL Server, Oracle, IBM DB2, and Amazon Redshift are based on RDBMS."
+Databases,What is SQL?,SQL stands for Structured Query Language. It is the standard language for relational database management systems. It is especially useful in handling organized data comprised of entities (variables) and relations between different entities of the data.
+Databases,What is the difference between SQL and MySQL?,"SQL is a standard language for retrieving and manipulating structured databases. On the contrary, MySQL is a relational database management system, like SQL Server, Oracle or IBM DB2, that is used to manage SQL databases."
+Databases,What are Tables and Fields?,A table is an organized collection of data stored in the form of rows and columns. Columns can be categorized as vertical and rows as horizontal. The columns in a table are called fields while the rows can be referred to as records.
+Others,Data Definition Language (DDL),"CREATE, ALTER, DROP, TRUNCATE"
+Others,Data Manipulation Language,"INSERT, UPDATE, DELETE; DML commands are used to modify the database. It is responsible for all form of changes in the database. The command of DML is not auto-committed that means it can't permanently save all the changes in the database. They can be rollback."
+Others,Data Control Language,"Grant, Revoke; DCL commands are used to grant and take back authority from any database user."
+Others,Transaction Control Language,"COMMIT, ROLLBACK, SAVEPOINT. TCL commands can only use with DML commands like INSERT, DELETE and UPDATE only. These operations are automatically committed in the database that's why they cannot be used while creating tables or dropping them."
+Others,Data Query Language,SELECT; DQL is used to fetch the data from the database.
